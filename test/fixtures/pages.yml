@@ -1,0 +1,4 @@
+page1:
+  url: http://page1.com
+  image: http://page1.com/image.jpg
+  loading_status: success
