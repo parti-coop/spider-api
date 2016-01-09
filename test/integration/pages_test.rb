@@ -8,6 +8,7 @@ class PagesTest < ActionDispatch::IntegrationTest
     get_page(url)
     assert Page.exists?(url: url)
     assert_equal "not_ready", json["loading_status"]
+    assert_nil json["source"]
 
     previous_pages_count = Page.count
     get_page(url)

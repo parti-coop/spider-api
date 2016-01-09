@@ -11,6 +11,8 @@ gem 'enumerize', '~> 1.1'
 
 # tools
 gem 'envyable', '~> 0.2.0'
+gem 'opengraph_parser', '~> 0.2.3'
+# gem 'sidekiq', '~> 4.0', '>= 4.0.2'
 
 # persistence
 gem 'mysql2', '~> 0.3.13'

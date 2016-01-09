@@ -6,7 +6,7 @@ class Api::V1::PagesController < ApplicationController
     if @page.errors.any?
       render json: {error: @page.errors.full_messages}, status: 400
     else
-      render json: @page
+      render json: @page, except: :source
     end
   end
 end
