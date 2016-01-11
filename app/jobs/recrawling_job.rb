@@ -1,8 +1,5 @@
 class RecrawlingJob
   include Sidekiq::Worker
-  include Sidetiq::Schedulable
-
-  recurrence { minutely(1) }
 
   def perform(reloading_after = 10)
     page = Page.where('updated_at <= ?', reloading_after.days.ago).first

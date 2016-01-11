@@ -1,0 +1,4 @@
+re_crawling_job:
+  cron: "*/2 * * * *"
+  class: "RecrawlingJob"
+  queue: default

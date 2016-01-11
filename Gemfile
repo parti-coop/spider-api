@@ -13,7 +13,7 @@ gem 'enumerize', '~> 1.1'
 gem 'envyable', '~> 0.2.0'
 gem 'opengraph_parser', '~> 0.2.3'
 gem 'sidekiq', '~> 4.0', '>= 4.0.2'
-gem 'sidetiq', '~> 0.6.3'
+gem 'sidekiq-cron', '~> 0.4.0'
 
 # persistence
 gem 'mysql2', '~> 0.3.13'
