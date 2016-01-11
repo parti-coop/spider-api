@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true, url: {no_local: true, message: 'is invalid format'}
 
   def fetch!
-    data = OpenGraph.new(self.url)
+    data = OpenGraph.new(self.url, {headers: {'Accept-Language' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4'}})
     self.metadata = data.metadata.to_json || self.metadata
     self.title = data.title || self.title
     self.image = (data.images[0] if data.images.any?) || self.image
