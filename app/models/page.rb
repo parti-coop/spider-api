@@ -6,11 +6,11 @@ class Page < ActiveRecord::Base
 
   def fetch!
     data = OpenGraph.new(self.url)
-    self.metadata ||= data.metadata.to_json
-    self.title ||= data.title
-    self.image ||= data.images[0] if data.images.any?
-    self.page_type ||= data.type
-    self.description ||= data.description
+    self.metadata = data.metadata.to_json || self.metadata
+    self.title = data.title || self.title
+    self.image = (data.images[0] if data.images.any?) || self.image
+    self.page_type = data.type || self.page_type
+    self.description = data.description || self.description
     self.loading_status = :completed
     self.save!
   end

@@ -18,6 +18,7 @@ gem 'sidetiq', '~> 0.6.3'
 # persistence
 gem 'mysql2', '~> 0.3.13'
 gem 'sqlite3'
+gem 'redis', '~> 3.2', '>= 3.2.2'
 gem 'redis-namespace', '~> 1.5', '>= 1.5.2'
 
 gem 'spring', :group => :development
