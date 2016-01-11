@@ -15,10 +15,11 @@ ActiveRecord::Schema.define(version: 20160109012316) do
 
   create_table "pages", force: :cascade do |t|
     t.string   "url",            null: false
+    t.text     "title"
     t.string   "image"
     t.string   "page_type"
-    t.string   "description"
-    t.text     "source"
+    t.text     "description"
+    t.text     "metadata"
     t.string   "loading_status", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

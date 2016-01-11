@@ -1,10 +1,14 @@
-class CrawlingJob < ActiveJob::Base
-  queue_as :default
+class CrawlingJob
+  include Sidekiq::Worker
 
-  def perform(*args)
-    page = Page.where(loading_status: :not_ready).first
+  def perform(id)
+    page = Page.find_by(id: id)
     return if page.nil?
-    page.fetch
-    page.save!
+
+    page.fetch!
+  rescue
+    if page.present?
+      page.update_attributes(loading_status: :unready)
+    end
   end
 end

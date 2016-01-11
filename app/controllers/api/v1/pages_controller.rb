@@ -4,9 +4,10 @@ class Api::V1::PagesController < ApplicationController
 
     @page = Page.find_or_create_by(url: params[:url])
     if @page.errors.any?
-      render json: {error: @page.errors.full_messages}, status: 400
-    else
-      render json: @page, except: :source
+      render(json: {error: @page.errors.full_messages}, status: 400) and return
     end
+
+    CrawlingJob.perform_async(@page.id) if @page.unready?
+    render json: @page
   end
 end

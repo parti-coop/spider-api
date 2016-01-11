@@ -7,8 +7,7 @@ class PagesTest < ActionDispatch::IntegrationTest
 
     get_page(url)
     assert Page.exists?(url: url)
-    assert_equal "not_ready", json["loading_status"]
-    assert_nil json["source"]
+    assert_equal "unready", json["loading_status"]
 
     previous_pages_count = Page.count
     get_page(url)
@@ -29,6 +28,11 @@ class PagesTest < ActionDispatch::IntegrationTest
 
     refute Page.exists?(url: url)
     assert_response 400
+  end
+
+  test 'unready?' do
+    refute pages(:page1).unready?
+    assert pages(:page2).unready?
   end
 
   def get_page(url)

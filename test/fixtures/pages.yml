@@ -1,10 +1,10 @@
 page1:
   url: http://page1.com
   image: http://page1.com/image.jpg
-  loading_status: success
-  source: source1
+  loading_status: completed
+  metadata: metadata1
 page2:
   url: http://ogp.me/
   image: http://page1.com/image.jpg
-  loading_status: not_ready
-  source: source2
+  loading_status: unready
+  metadata: metadata2

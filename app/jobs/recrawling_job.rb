@@ -1,10 +1,18 @@
-class RecrawlingJob < ActiveJob::Base
-  queue_as :default
+class RecrawlingJob
+  include Sidekiq::Worker
+  include Sidetiq::Schedulable
+
+  recurrence { minutely(1) }
 
   def perform(reloading_after = 10)
-    page = Page.where(loading_status: [:success, :fail]).where('updated_at <= ?', reloading_after.days.ago).first
+    page = Page.where('updated_at <= ?', reloading_after.days.ago).first
     return if page.nil?
-    page.fetch
-    page.save!
+
+    previous_loading_status = page.loading_status
+    page.fetch!
+  rescue
+    if page.present? and previous_loading_status.present?
+      page.update_attributes(loading_status: previous_loading_status)
+    end
   end
 end

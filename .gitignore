@@ -12,3 +12,6 @@
 !/log/.keep
 /tmp
 .byebug_history
+
+/db/*.sqlite3
+dump.rdb
